@@ -12,6 +12,13 @@ namespace FileManagerWPFmono.ViewModels
 {
     public class MainWindowViewModel : ViewModel
     {
+        private string _title= "FileManager";
+        public string Title
+        {
+            get { return _title; }
+            set=>Set(ref _title, value);
+        }
+
 
         public MainWindowViewModel()
         {

@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace FileManagerWPFmono.Commands.Base
 {
-    internal abstract class Command : ICommand
+    public abstract class Command : ICommand
     {
 
         // Передача управления командами CommandManager

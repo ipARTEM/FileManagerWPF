@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FileManagerWPFmono.Commands
 {
-    internal class LamdaCommand : Command
+    public class LamdaCommand : Command
     {
         private readonly Action<object> _Execute;
         private readonly Func<object, bool> _CanExecute;
