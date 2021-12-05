@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace FileManagerWPFmono.Commands
 {
-    internal class CloseApplication2Command : Command
+    internal class CloseApplicationCommand : Command
     {
         public override bool CanExecute(object parameter) => true;
 

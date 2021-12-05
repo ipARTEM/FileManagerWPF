@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FileManagerWPFmono" mc:Ignorable="d"
+        xmlns:fa="http://schemas.fontawesome.com/icons/"
         xmlns:vm="clr-namespace:FileManagerWPFmono.ViewModels"
         xmlns:cmd="clr-namespace:FileManagerWPFmono.Commands"
        
@@ -17,7 +18,7 @@
     </Window.InputBindings>
 
     <Window.Resources>
-        <cmd:CloseApplication2Command x:Key="CloseApplicationCommand"/>
+        <cmd:CloseApplicationCommand x:Key="CloseApplication2Command"/>
     </Window.Resources>
 
     <DockPanel  >
@@ -32,10 +33,11 @@
                 <MenuItem Command="ApplicationCommands.Paste"/>
                 <Separator />
                 <MenuItem Header="Выход" Command="{Binding CloseApplicationCommand}"  />
-                <MenuItem Header="Выход2">
-                    <!--<Menu.InputBindings>
-                        <MouseBinding Command="{Binding Cl}"
-                    </Menu.InputBindings>-->
+                <MenuItem Header="Выход2" Command="{StaticResource CloseApplication2Command}"/>
+                <MenuItem Header="Выход3">
+                    <MenuItem.Command>
+                        <cmd:CloseApplicationCommand/>
+                    </MenuItem.Command>
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="Главная">
@@ -90,7 +92,10 @@
                 <RowDefinition Height="25" />
             </Grid.RowDefinitions>
 
-            <TreeView Grid.Row="0" Grid.Column="0" x:Name="TBConductor"/>
+            <TreeView Grid.Row="0" Grid.Column="0" x:Name="TBConductor" ItemsSource="{Binding PathLine}">
+                
+                
+            </TreeView>
 
             <GridSplitter Grid.Row="0" Grid.Column="1"  ShowsPreview="False" Width="3"
                  HorizontalAlignment="Center" VerticalAlignment="Stretch" />

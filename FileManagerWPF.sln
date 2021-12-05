@@ -16,7 +16,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileManagerConsole", "FileM
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileManagerWPFmono", "FileManagerWPFmono\FileManagerWPFmono.csproj", "{69C84A48-3772-4C4B-BCCA-ABA72CE11DE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileManagerWPFtree", "FileManagerWPFtree\FileManagerWPFtree.csproj", "{23650C05-A3AF-4BA3-AF5F-B6052FD36804}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileManagerWPFtree", "FileManagerWPFtree\FileManagerWPFtree.csproj", "{23650C05-A3AF-4BA3-AF5F-B6052FD36804}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FM", "FM\FM.csproj", "{1431A6E5-15FC-43D1-8761-D968BFE91F84}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +46,10 @@ Global
 		{23650C05-A3AF-4BA3-AF5F-B6052FD36804}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23650C05-A3AF-4BA3-AF5F-B6052FD36804}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23650C05-A3AF-4BA3-AF5F-B6052FD36804}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1431A6E5-15FC-43D1-8761-D968BFE91F84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1431A6E5-15FC-43D1-8761-D968BFE91F84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1431A6E5-15FC-43D1-8761-D968BFE91F84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1431A6E5-15FC-43D1-8761-D968BFE91F84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
