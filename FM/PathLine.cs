@@ -56,5 +56,36 @@ namespace FM
                 }
             }
         }
+
+        public static string GetPath(string dirName)
+        {
+            if (Directory.Exists(dirName))
+            {
+                return dirName;
+            }
+            else
+                return null;
+        }
+
+        public static string CreateCatalog(string oldPath, string newCatalog)
+        {
+            string oldPath2 = @$"{oldPath}\{newCatalog}";
+            DirectoryInfo dirInfo2 = new DirectoryInfo(oldPath2);
+            DirectoryInfo dirInfo = new DirectoryInfo(oldPath);
+
+            if (dirInfo2.Exists)
+            {
+                //dirInfo.Create();
+                Console.WriteLine("такой каталог уже есть");
+            }
+            else
+            {
+
+                dirInfo.CreateSubdirectory(newCatalog);
+                Console.WriteLine("папка успешно создана");
+            }
+
+            return dirInfo.FullName;
+        }
     }
 }
