@@ -66,7 +66,7 @@ namespace FM
                 case "nc":
                     if (_getPath == null)
                     {
-                        Console.WriteLine("Не указана директория, где сохранить новую папку");
+                        Console.WriteLine("Не указана директория, где создать новую папку");
                     }
                     else
                     {
@@ -74,6 +74,51 @@ namespace FM
                         Console.WriteLine("Введите название папки");
                         _getPath = PathLine.CreateCatalog(_getPath, Console.ReadLine());
                     }
+                    break;
+
+                case "nf":
+                    if (_getPath == null)
+                    {
+
+                        Console.WriteLine("Не указана директория, где сохранить новый файл");
+                    }
+                    else
+                    {
+
+                        Console.WriteLine("Введите название и расширение файла в формате 'text.txt'");
+                        PathLine.CreateFile(_getPath, Console.ReadLine());
+                    }
+
+                    break;
+
+                case "dc":
+                    if (_getPath == null)
+                    {
+
+                        Console.WriteLine("Не указанна директория, где хранится папка");
+                    }
+                    else
+                    {
+
+                        Console.WriteLine("Введите название папки для удаления");
+                        PathLine.DeleteCatalog(_getPath, Console.ReadLine());
+                    }
+
+                    break;
+
+                case "df":
+                    if (_getPath == null)
+                    {
+
+                        Console.WriteLine("Не удаётся найти директорию из которой удалить файл");
+                    }
+                    else
+                    {
+
+                        Console.WriteLine("Введите название и расширение файла в формате для удаления 'text.txt'");
+                        PathLine.DeleteFile(_getPath, Console.ReadLine());
+                    }
+
                     break;
 
 
@@ -91,7 +136,10 @@ namespace FM
             "show -показать содержимое диска или папки",
             "'null' - выйти из каталога",
             @"'cd' затем 'C:\Windows'- переход в данный каталог",
-            "'nc'- создать новый каталог в данной директории"
+            "'nc'- создать новую папку в данной директории",
+            "'nf'-создать новый файл в данной директории",
+            "'dc'- удалить папку в данной директории",
+            "'df'-удалить файл в данной директории"
 
         };
 

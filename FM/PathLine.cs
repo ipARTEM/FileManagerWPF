@@ -87,5 +87,40 @@ namespace FM
 
             return dirInfo.FullName;
         }
+
+        public static void CreateFile(string path, string file)
+        {
+            using (FileStream fstream = new FileStream($@"{path}\{file}", FileMode.OpenOrCreate))
+            {
+
+            }
+
+        }
+
+        public static void DeleteCatalog(string path, string folderDil)
+        {
+            try
+            {
+                path = @$"{path}\{folderDil}";
+                DirectoryInfo dirInfo = new DirectoryInfo(path);
+                dirInfo.Delete(true);
+                Console.WriteLine("Каталог удален");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public static void DeleteFile(string path, string file)
+        {
+            path = @$"{path}\{file}";
+            FileInfo fileInf = new FileInfo(path);
+            if (fileInf.Exists)
+            {
+                fileInf.Delete();
+                
+            }
+        }
     }
 }
