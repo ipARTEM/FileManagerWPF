@@ -9,6 +9,10 @@ namespace FM
 {
     public static class PathLine
     {
+        /// <summary>
+        /// Показать все диски
+        /// </summary>
+        /// <returns></returns>
         public static List<DriveInfo> GetDrives()
         {
             DriveInfo[] allDrives = DriveInfo.GetDrives();
@@ -23,6 +27,11 @@ namespace FM
             return newAllDrives;
         }
 
+        /// <summary>
+        /// Показать все файлы
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public static List<FileInfo> GetFiles(String path)
         {
             if (path == "" || path == null)
@@ -36,6 +45,10 @@ namespace FM
             return new DirectoryInfo(path).GetFiles().ToList();
         }
 
+        /// <summary>
+        /// Показать все папки и файлы в заданной директории
+        /// </summary>
+        /// <param name="dirName"></param>
         public static void GetShow(string dirName)
         {
             Console.WriteLine();
@@ -57,6 +70,11 @@ namespace FM
             }
         }
 
+        /// <summary>
+        /// Название директории
+        /// </summary>
+        /// <param name="dirName"></param>
+        /// <returns></returns>
         public static string GetPath(string dirName)
         {
             if (Directory.Exists(dirName))
@@ -67,6 +85,12 @@ namespace FM
                 return null;
         }
 
+        /// <summary>
+        /// Создать папку
+        /// </summary>
+        /// <param name="oldPath"></param>
+        /// <param name="newCatalog"></param>
+        /// <returns></returns>
         public static string CreateCatalog(string oldPath, string newCatalog)
         {
             string oldPath2 = @$"{oldPath}\{newCatalog}";
@@ -88,6 +112,11 @@ namespace FM
             return dirInfo.FullName;
         }
 
+        /// <summary>
+        /// Создать файл
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="file"></param>
         public static void CreateFile(string path, string file)
         {
             using (FileStream fstream = new FileStream($@"{path}\{file}", FileMode.OpenOrCreate))
@@ -97,6 +126,11 @@ namespace FM
 
         }
 
+        /// <summary>
+        /// Удалить папку
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="folderDil"></param>
         public static void DeleteCatalog(string path, string folderDil)
         {
             try
@@ -104,7 +138,7 @@ namespace FM
                 path = @$"{path}\{folderDil}";
                 DirectoryInfo dirInfo = new DirectoryInfo(path);
                 dirInfo.Delete(true);
-                Console.WriteLine("Каталог удален");
+                Console.WriteLine("Каталог удалён");
             }
             catch (Exception ex)
             {
@@ -112,6 +146,11 @@ namespace FM
             }
         }
 
+        /// <summary>
+        /// Удалить файл
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="file"></param>
         public static void DeleteFile(string path, string file)
         {
             path = @$"{path}\{file}";
@@ -121,6 +160,55 @@ namespace FM
                 fileInf.Delete();
                 
             }
+        }
+
+        /// <summary>
+        /// Переместить папку
+        /// </summary>
+        /// <param name="pathOld"></param>
+        /// <param name="pathNew"></param>
+        public static void MoveToCatalog(string pathOld, string pathNew)
+        {
+            DirectoryInfo dirInfo = new DirectoryInfo(pathOld);
+            if (dirInfo.Exists && Directory.Exists(pathNew) == false)
+            {
+                dirInfo.MoveTo(pathNew);
+            }
+
+        }
+
+        /// <summary>
+        /// Переместить файл
+        /// </summary>
+        /// <param name="pathOld"></param>
+        /// <param name="pathNew"></param>
+        public static void MoveToFile(string pathOld, string pathNew)
+        {
+            FileInfo fileInf = new FileInfo(pathOld);
+            if (fileInf.Exists)
+            {
+                fileInf.MoveTo(pathNew);
+            }
+        }
+
+        /// <summary>
+        /// Переименовать папку
+        /// </summary>
+        /// <param name="pathOld"></param>
+        /// <param name="pathNew"></param>
+        public static void RenameCatalog(string pathOld, string pathNew)
+        {
+            Directory.Move(pathOld, pathNew);
+        }
+
+        /// <summary>
+        /// Переименовать файл
+        /// </summary>
+        /// <param name="pathOld"></param>
+        /// <param name="pathNew"></param>
+        public static void RenameFile(string pathOld, string pathNew)
+        {
+            File.Move(pathOld, pathNew);
         }
     }
 }
