@@ -152,6 +152,26 @@ namespace FM
                     PathLine.RenameFile(_pathOld, _pathNew);
                     break;
 
+                case "cc":
+                    Console.WriteLine(@"Введите название папки, которую надо копировать в формате 'd:\folder\text'");
+                    _pathOld = Console.ReadLine();
+
+                    Console.WriteLine(@"Введите название новой папки, который надо создать в формате 'd:\folder\text'");
+                    _pathNew = Console.ReadLine();
+
+                    PathLine.CopyCatalog(_pathOld, _pathNew);
+                    break;
+
+                case "cf":
+                    Console.WriteLine(@"Введите название файла, который надо копировать в формате 'd:\folder\text.txt'");
+                    _pathOld = Console.ReadLine();
+
+                    Console.WriteLine(@"Введите название нового файла, который надо создать при копировании в формате 'd:\folder\text.txt'");
+                    _pathNew = Console.ReadLine();
+
+                    PathLine.CopyFile(_pathOld, _pathNew);
+                    break;
+
                 default:
                     break;
             }
@@ -172,7 +192,8 @@ namespace FM
             "'mf'- переместить файл",
             "'mc'- переместить папку",
             "'rf'- переименовать файл",
-            "'rc'- переименовать папку",
+            "'cc'- копировать папку",
+            "'cf'- копировать файл",
         };
 
         

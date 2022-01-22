@@ -210,5 +210,33 @@ namespace FM
         {
             File.Move(pathOld, pathNew);
         }
+
+        public static void CopyFile(string toCopy, string newFile)
+        {
+            File.Copy(toCopy, newFile);
+        }
+
+        public static void CopyCatalog(string toCopyCatalog, string newCopyCatalog)
+        {
+            DirectoryInfo diSource = new DirectoryInfo(toCopyCatalog);
+            DirectoryInfo diTarget = new DirectoryInfo(newCopyCatalog);
+
+            if (Directory.Exists(diTarget.FullName) == false)
+            {
+                Directory.CreateDirectory(diTarget.FullName);
+            }
+
+            // Копируем все файлы в новую директорию
+            foreach (FileInfo fi in diSource.GetFiles())
+            {
+                fi.CopyTo(Path.Combine(diTarget.ToString(), fi.Name), true);
+            }
+
+            // Копируем рекурсивно все поддиректории
+            foreach (DirectoryInfo diSourceSubDir in diSource.GetDirectories())
+            {
+                  diTarget.CreateSubdirectory(diSourceSubDir.Name);
+            }
+        }
     }
 }
