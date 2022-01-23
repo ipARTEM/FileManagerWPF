@@ -105,11 +105,9 @@ namespace FM
             }
             else
             {
-
                 dirInfo.CreateSubdirectory(newCatalog);
                 Console.WriteLine("папка успешно создана");
             }
-
             return dirInfo.FullName;
         }
 
@@ -122,9 +120,7 @@ namespace FM
         {
             using (FileStream fstream = new FileStream($@"{path}\{file}", FileMode.OpenOrCreate))
             {
-
             }
-
         }
 
         /// <summary>
@@ -159,7 +155,6 @@ namespace FM
             if (fileInf.Exists)
             {
                 fileInf.Delete();
-                
             }
         }
 
@@ -175,7 +170,6 @@ namespace FM
             {
                 dirInfo.MoveTo(pathNew);
             }
-
         }
 
         /// <summary>
@@ -297,15 +291,12 @@ namespace FM
                 Console.WriteLine("Время создания: {0}", fileInf.CreationTime);
                 Console.WriteLine("Размер: {0}", fileInf.Length);
             }
-
         }
 
         public static void TextFileStatistics(string fileStatict)
         {
             try
             {
-               
-                
                 using (StreamReader sr = new StreamReader(fileStatict))
                 {
                     Console.WriteLine( sr.ReadToEnd());     //весь текст
@@ -393,7 +384,5 @@ namespace FM
 
             Console.WriteLine("Атрибут IsReadOnly: "+ fileInfo.IsReadOnly);
         }
-
-
     }
 }
