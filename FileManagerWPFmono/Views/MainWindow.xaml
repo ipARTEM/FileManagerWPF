@@ -1,0 +1,115 @@
+﻿<Window x:Class="FileManagerWPFmono.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FileManagerWPFmono" mc:Ignorable="d"
+        xmlns:fa="http://schemas.fontawesome.com/icons/"
+        xmlns:vm="clr-namespace:FileManagerWPFmono.ViewModels"
+        xmlns:cmd="clr-namespace:FileManagerWPFmono.Commands"
+       
+        Title="{Binding Title}" WindowStartupLocation="CenterScreen" Height="800" Width="1200">
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Ctrl" Key="q" Command="{Binding CloseApplicationCommand}"/>
+    </Window.InputBindings>
+
+    <Window.Resources>
+        <cmd:CloseApplicationCommand x:Key="CloseApplication2Command"/>
+    </Window.Resources>
+
+    <DockPanel  >
+
+        <Menu DockPanel.Dock="Top" HorizontalAlignment="Left" Background="White" >
+            <MenuItem Header="Файл">
+                <MenuItem Command="Open"/>
+                <MenuItem Command="ApplicationCommands.Open"/>
+                <MenuItem Command="ApplicationCommands.Save"/>
+                <MenuItem Command="ApplicationCommands.Copy"/>
+                <MenuItem Command="ApplicationCommands.Cut"/>
+                <MenuItem Command="ApplicationCommands.Paste"/>
+                <Separator />
+                <MenuItem Header="Выход" Command="{Binding CloseApplicationCommand}"  />
+                <MenuItem Header="Выход2" Command="{StaticResource CloseApplication2Command}"/>
+                <MenuItem Header="Выход3">
+                    <MenuItem.Command>
+                        <cmd:CloseApplicationCommand/>
+                    </MenuItem.Command>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Главная">
+            </MenuItem>
+            
+            <MenuItem Header="Поделиться">
+            </MenuItem>
+
+            <MenuItem Header="Вид">
+            </MenuItem>
+
+            <MenuItem Header="Средства работы с дисками">
+            </MenuItem>
+        </Menu>
+
+        <DockPanel DockPanel.Dock="Top" Margin="0 5 0 0" >
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Content="Назад" Margin="10 0 0 0"  ></Button>
+                <Button Grid.Column="1" Content="Вперёд" ></Button>
+                <Button Grid.Column="2" Content="История" ></Button>
+                <Button Grid.Column="3" Content="Вверх" ></Button>
+                <TextBox Grid.Column="4" x:Name="TBPath" Text="Путь" VerticalAlignment="Stretch"  Margin="10 0 0 0" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center"  />
+                <Button Grid.Column="5" Content="Обновить" Margin="0 0 10 0"></Button>
+                <TextBox Grid.Column="6" x:Name="TBSearch" Text="Поиск" Margin="0 0 10 0" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" />
+            </Grid>
+           
+        </DockPanel>
+
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="25" />
+            </Grid.RowDefinitions>
+
+            <TreeView Grid.Row="0" Grid.Column="0" x:Name="TBConductor" ItemsSource="{Binding PathLine}">
+                
+                
+            </TreeView>
+
+            <GridSplitter Grid.Row="0" Grid.Column="1"  ShowsPreview="False" Width="3"
+                 HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+
+            <TextBox Grid.Row="0" Grid.Column="3" x:Name="TBDescription"/>
+
+            <StackPanel Grid.Row="1"  Grid.ColumnSpan="3">
+                <Label Content="Элементов:"/>
+
+            </StackPanel>
+        </Grid>
+
+
+
+
+    </DockPanel>
+</Window>
