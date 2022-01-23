@@ -24,7 +24,7 @@ namespace FM
             } while (_exit);
         }
 
-        private static void Input(string str)
+        private static async void Input(string str)
         {
             str = str.ToLower();
             switch (str)
@@ -172,6 +172,63 @@ namespace FM
                     PathLine.CopyFile(_pathOld, _pathNew);
                     break;
 
+                case "gc":
+                    Console.WriteLine(@"Произвести поиск папок по маске в папке в формате 'd:\folder\text'");
+                    _pathOld = Console.ReadLine();
+
+                    Console.WriteLine(@"Указать часть папки в формате 'c*'");
+                    _pathNew = Console.ReadLine();
+
+                    PathLine.GetFullDirectories(_pathOld, _pathNew);
+                    break;
+
+                case "gf":
+                    Console.WriteLine(@"Произвести поиск файлов по маске в папке в формате 'd:\folder\text'");
+                    _pathOld = Console.ReadLine();
+
+                    Console.WriteLine(@"Произвести поиск файлов по маске файлов в формате '*.txt'");
+                    _pathNew = Console.ReadLine();
+
+                    PathLine.GetFullFiles(_pathOld, _pathNew);
+                    break;
+
+
+                case "ic":
+                    Console.WriteLine(@"Введите адрес папки для вычесления размера в формате 'd:\folder\text'");
+                    _pathOld = Console.ReadLine();
+
+
+                    PathLine.InfoCatalog(_pathOld);
+                    break;
+
+
+                case "if":
+                    Console.WriteLine(@"Введите адрес файла для вычисления данных о файле в формате 'd:\folder\text.txt'");
+                    _pathOld = Console.ReadLine();
+
+                    PathLine.InfoFile(_pathOld);
+                    break;
+
+
+
+                case "sf":
+                    Console.WriteLine(@"Введите адрес файла в формате 'd:\folder\text.txt'");
+                    _pathOld = Console.ReadLine();
+
+                     PathLine.TextFileStatistics(_pathOld);
+                    break;
+
+
+                case "af":
+                    Console.WriteLine(@"Введите адрес файла для изменения атрибута только для чтения в формате 'd:\folder\text.txt'");
+                    _pathOld = Console.ReadLine();
+
+                    Console.WriteLine(@"Передайте параметр  для файла 'f'-не активен только для чтения, 't'- активен только для чтения");
+                    _pathNew = Console.ReadLine();
+
+                    PathLine.AttributeFile(_pathOld, _pathNew);
+                    break;
+
                 default:
                     break;
             }
@@ -194,6 +251,13 @@ namespace FM
             "'rf'- переименовать файл",
             "'cc'- копировать папку",
             "'cf'- копировать файл",
+            "'gc'- поиск папок по маске",
+            "'gf'- поиск файлов по маске",
+            "'ic'- вычислить размер папки",
+            "'if'- вычислить размер файла",
+            "'sf'- статистические данные о файле",
+            "'af'- установить/удалить атрибут только для чтения в файле",
+
         };
 
         

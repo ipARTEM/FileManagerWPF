@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace FM
@@ -238,5 +239,161 @@ namespace FM
                   diTarget.CreateSubdirectory(diSourceSubDir.Name);
             }
         }
+
+        /// <summary>
+        /// Поиск файлов по маске
+        /// </summary>
+        /// <param name="getCatalog"></param>
+        /// <param name="getFiles"></param>
+        public static void GetFullFiles(string getCatalog, string getFiles)
+        {
+            string[] files= Directory.GetFiles(getCatalog, getFiles);
+
+            Console.WriteLine("Всего файлов: {0}.", files.Length);
+            foreach (string f in files)
+            {
+                Console.WriteLine(f);
+            }
+        }
+
+        /// <summary>
+        /// Поиск папок по маске
+        /// </summary>
+        public static void GetFullDirectories(string getPath, string pathCatalog)
+        {
+            string[] dirs = Directory.GetDirectories(getPath, pathCatalog);
+            Console.WriteLine("Всего каталогов: {0}", dirs.Length);
+
+            foreach (string d in dirs)
+            {
+                Console.WriteLine(d);
+            }
+        }
+
+        /// <summary>
+        /// Вывод данных о папке
+        /// </summary>
+        /// <param name="infoCatalog"></param>
+        public static void InfoCatalog(string infoCatalog)
+        {
+            DirectoryInfo dirInfo = new DirectoryInfo(infoCatalog);
+
+            Console.WriteLine($"Название каталога: {dirInfo.Name}");
+            Console.WriteLine($"Полное название каталога: {dirInfo.FullName}");
+            Console.WriteLine($"Время создания каталога: {dirInfo.CreationTime}");
+            Console.WriteLine($"Корневой каталог: {dirInfo.Root}");
+        }
+
+        /// <summary>
+        /// Вывод данных о файле
+        /// </summary>
+        /// <param name="infoFile"></param>
+        public static void InfoFile(string infoFile)
+        {
+            FileInfo fileInf = new FileInfo(infoFile);
+            if (fileInf.Exists)
+            {
+                Console.WriteLine("Имя файла: {0}", fileInf.Name);
+                Console.WriteLine("Время создания: {0}", fileInf.CreationTime);
+                Console.WriteLine("Размер: {0}", fileInf.Length);
+            }
+
+        }
+
+        public static void TextFileStatistics(string fileStatict)
+        {
+            try
+            {
+               
+                
+                using (StreamReader sr = new StreamReader(fileStatict))
+                {
+                    Console.WriteLine( sr.ReadToEnd());     //весь текст
+                    string word="";
+                    string[] words;
+
+                    while (sr.EndOfStream != true)
+                    {
+                        word += sr.ReadLine();
+                    }
+                     words = word.Split(' ');
+                    Console.WriteLine("Количество слов: "+ words.Length);
+                }
+
+                using (StreamReader sr = new StreamReader(fileStatict))
+                {
+                    string line;
+                    int i = 0;
+                    while ((line = sr.ReadLine()) != null) //читаем по одной линии(строке) пока не вычитаем все из потока (пока не достигнем конца файла)
+                    {
+                        i++;
+                        //Console.WriteLine(line);
+                    }
+                    Console.WriteLine("Количество строк: " + i.ToString());
+                }
+
+                using (StreamReader sr = new StreamReader(fileStatict))
+                {
+                    string line;
+                    int i = 0;
+                    while ((line = sr.ReadLine()) != null) 
+                    {
+                        if(line[0]=='\t')
+                        {
+                            i++;
+                        }
+                    }
+                    Console.WriteLine("Количество абзацев: " + i.ToString());
+                }
+
+                using (StreamReader sr = new StreamReader(fileStatict))
+                {
+                    string s = sr.ReadToEnd();
+                    char[] ch = s.ToCharArray();
+                    
+                    Console.WriteLine("Количество символов с пробелами: " + ch.Length.ToString());
+                }
+
+                using (StreamReader sr = new StreamReader(fileStatict))
+                {
+                    string st=sr.ReadToEnd();
+                    string[] SMass;
+                    int sumStr=0;
+                    
+                    SMass = st.Split(' ','\n');
+
+                    foreach (var i in SMass)
+                    {
+                        if (i==""||i=="\r")
+                        {
+                            continue;
+                        }
+                        sumStr++;
+                    }
+                    Console.WriteLine("Количество слов без пробелов: " + sumStr);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        public static void AttributeFile(string pathFile, string attrib)
+        {
+            FileInfo fileInfo = new FileInfo(pathFile);
+            
+            bool at=false;
+            if (attrib == "t")
+            {
+                at=true;
+            }
+            
+            fileInfo.IsReadOnly = at;
+
+            Console.WriteLine("Атрибут IsReadOnly: "+ fileInfo.IsReadOnly);
+        }
+
+
     }
 }
